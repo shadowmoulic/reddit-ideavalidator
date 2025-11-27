@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IdeaHub Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-10 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">hub</span>
+<h1 class="text-zinc-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">IdeaHub Blog</h1>
+</div>
+<div class="flex items-center justify-end">
+<button class="flex items-center justify-center rounded-full h-12 w-12 bg-transparent text-zinc-900 dark:text-white">
+<span class="material-symbols-outlined text-2xl">search</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Category Chips -->
+<div class="py-6">
+<div class="flex gap-3 overflow-x-auto pb-2 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8" style="scrollbar-width: none;">
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary pl-4 pr-4 text-white text-sm font-medium leading-normal">
+                        All
+                    </button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-zinc-200/50 dark:bg-zinc-800/50 pl-4 pr-4 text-zinc-900 dark:text-white text-sm font-medium leading-normal hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">
+                        Validation Techniques
+                    </button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-zinc-200/50 dark:bg-zinc-800/50 pl-4 pr-4 text-zinc-900 dark:text-white text-sm font-medium leading-normal hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">
+                        Market Research
+                    </button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-zinc-200/50 dark:bg-zinc-800/50 pl-4 pr-4 text-zinc-900 dark:text-white text-sm font-medium leading-normal hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">
+                        Founder Stories
+                    </button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-zinc-200/50 dark:bg-zinc-800/50 pl-4 pr-4 text-zinc-900 dark:text-white text-sm font-medium leading-normal hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">
+                        Product Strategy
+                    </button>
+</div>
+</div>
+<!-- Featured Card -->
+<div class="pb-8 @container">
+<div class="flex flex-col items-stretch justify-start rounded-lg @xl:flex-row @xl:items-start bg-zinc-100 dark:bg-zinc-900/50 overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover @xl:w-3/5" data-alt="Abstract purple and blue geometric shapes on a dark background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDHprk6QUfbcFrMD_-Jf3l_gcHFHJHO_JaBjJL2In_22o7FeeD1kwHK_GWLN1Kk7gkf4LMy-QE5xERugSZDbGdUGMpm3P98ByEQEB3ryAfh0H1i1P-oCbZQutqnU4tqZI3SJcGJub4G-5hbAK86vzRjKaBHE5D868e9rf9sU7E4zw6MZugAPbI2ZKLpUqqKxs8JwVNnHG-byHPFLxTl882t-6tdjeUivT_aMFHpbRxGcwTsVQE9MrFwTe_OTVRUXC2MY3zKHrW97IU");'></div>
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-4 p-6 @xl:p-8">
+<p class="text-primary text-sm font-bold leading-normal uppercase tracking-wider">Featured</p>
+<p class="text-zinc-900 dark:text-white text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em]">Is Your Idea Worth Pursuing? 5 Validation Tests to Run Today</p>
+<div class="flex flex-col gap-2">
+<p class="text-zinc-600 dark:text-zinc-400 text-base font-normal leading-normal">
+                                Don't waste time on a failing idea. Here are five crucial tests to validate your concept before you write a single line of code.
+                            </p>
+<p class="text-zinc-500 dark:text-zinc-500 text-sm font-normal leading-normal">John Doe • 2 days ago</p>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-primary text-white text-sm font-medium leading-normal w-fit mt-2">
+<span class="truncate">Read More</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Blog Post Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-16">
+<!-- Card 1 -->
+<div class="flex flex-col gap-4 rounded-lg bg-zinc-100 dark:bg-zinc-900/50 overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover" data-alt="A person sketching ideas on a napkin in a cafe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4_sibtnggjbexbV92d5PVOmSD4MffJIG8520Sb3rIed_8HYtzUddLlOkBPfgnJLfaQ0lSKICkcFG5gabGr3_TpGiadvArA3Rn0cC-YtnSA6e1kASKiIUARFbFGU8J6K2RviKl8kO0ibtTxZ2Jk2P1Pco2uoE3c_4He1cV4CsNUmg8i3iyywYuFX98O8BmQxnx2Z9p02F4DKy0BKoQXKKtKAUvVqSww3bvNsTAtCSQy-GiA_UXHPuUPkE_0EntQ3plUuhCH_Z47ps");'></div>
+<div class="flex flex-col gap-4 p-6 pt-0">
+<p class="text-primary dark:text-primary/90 text-sm font-bold leading-normal uppercase tracking-wider">Founder Stories</p>
+<p class="text-zinc-900 dark:text-white text-xl font-bold leading-tight">From Napkin Sketch to MVP: A Founder's Journey</p>
+<p class="text-zinc-600 dark:text-zinc-400 text-sm font-normal leading-normal">
+                            Follow the step-by-step process of turning a simple concept into a market-ready Minimum Viable Product.
+                        </p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-5 bg-zinc-200/80 dark:bg-zinc-800 text-zinc-900 dark:text-white text-sm font-medium leading-normal w-fit mt-2 hover:bg-zinc-200 dark:hover:bg-zinc-700/80 transition-colors">
+<span class="truncate">Read More</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col gap-4 rounded-lg bg-zinc-100 dark:bg-zinc-900/50 overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover" data-alt="A dashboard with charts and metrics" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPxMsoMKzCQ5eVYvfV_I4fexHjOuLcYy4ENPHZyF_xzRwx3rerVsQnPVhmioxjcMNxri_Is7fesAHRaR2TBklrquWhxkkLYAKQCs7JL2L8VmuymLztGxrbUjMNU6GqS2cp2F3yONIIzO-GfSyNVoSbfC9iP-46DBIe_kE7kkd_8g6wuboFTJ12Q6l8WXfrn1ygMb8NNikOv7DOa3un1HKxxtOvlE_7pgibcaDjym_UBNmFzr99J8DUbNrDn-xBAc6Nqh1wCcGkRqQ");'></div>
+<div class="flex flex-col gap-4 p-6 pt-0">
+<p class="text-primary dark:text-primary/90 text-sm font-bold leading-normal uppercase tracking-wider">Market Research</p>
+<p class="text-zinc-900 dark:text-white text-xl font-bold leading-tight">The Top 3 Metrics to Track Before Building Anything</p>
+<p class="text-zinc-600 dark:text-zinc-400 text-sm font-normal leading-normal">
+                            Discover the key performance indicators that will tell you if your product has potential before you invest heavily.
+                        </p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-5 bg-zinc-200/80 dark:bg-zinc-800 text-zinc-900 dark:text-white text-sm font-medium leading-normal w-fit mt-2 hover:bg-zinc-200 dark:hover:bg-zinc-700/80 transition-colors">
+<span class="truncate">Read More</span>
+</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col gap-4 rounded-lg bg-zinc-100 dark:bg-zinc-900/50 overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover" data-alt="A designer presenting a product strategy on a whiteboard" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbFtfMQrZd6JQAqtXsNYuKdY31lvp9gn-V5MEKh5YLpFfHe08QTXIp_UPrwzLQIYxr38g6W9AdES237JCYqXz9mVrwZ3MuKHM-_YewjfNXnQHsGVUoNL7pjhGmdr0t2UjP9gIcUmKwBadnHVC3IjpRaSq0uMb8LIGfLA_9VIuFoSCQw71a5YZTi2n1961CNV4GS1JZHDwf7t6FeMPDQ4XEGoJ2oK7JAb4sPBc5wIH_4SvlzIhOSaS9NEIoVcN5xIbqH2A1odA97VQ");'></div>
+<div class="flex flex-col gap-4 p-6 pt-0">
+<p class="text-primary dark:text-primary/90 text-sm font-bold leading-normal uppercase tracking-wider">Product Strategy</p>
+<p class="text-zinc-900 dark:text-white text-xl font-bold leading-tight">Crafting a Product Roadmap that Aligns with Your Vision</p>
+<p class="text-zinc-600 dark:text-zinc-400 text-sm font-normal leading-normal">
+                            Learn how to build a flexible and effective product roadmap that guides your team and inspires stakeholders.
+                        </p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-5 bg-zinc-200/80 dark:bg-zinc-800 text-zinc-900 dark:text-white text-sm font-medium leading-normal w-fit mt-2 hover:bg-zinc-200 dark:hover:bg-zinc-700/80 transition-colors">
+<span class="truncate">Read More</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
