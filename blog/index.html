@@ -1,151 +1,231 @@
 <!DOCTYPE html>
-
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>IdeaHub Blog</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<title>Blog - IdeaValidator</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#330df2",
-                        "background-light": "#f6f5f8",
-                        "background-dark": "#131022",
-                    },
-                    fontFamily: {
-                        "display": ["Space Grotesk"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "1rem",
-                        "lg": "2rem",
-                        "xl": "3rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }
-    </script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#f24a0d",
+            "background-light": "#f8f6f5",
+            "background-dark": "#111111",
+            "surface-dark": "#221510",
+            "text-light": "#EAEAEA",
+            "text-dark-secondary": "#cba090",
+            "border-dark": "#684031"
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    .bg-grid {
+      background-image: linear-gradient(rgba(104, 64, 49, 0.2) 1px, transparent 1px), linear-gradient(to right, rgba(104, 64, 49, 0.2) 1px, transparent 1px);
+      background-size: 3rem 3rem;
+    }
+  </style>
 <style>
     body {
       min-height: max(884px, 100dvh);
     }
   </style>
   </head>
-<body class="bg-background-light dark:bg-background-dark font-display">
-<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
-<!-- Top App Bar -->
-<header class="sticky top-0 z-10 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between py-4">
+<body class="bg-background-dark font-display text-text-light">
+<div class="relative min-h-screen w-full overflow-x-hidden">
+<div class="absolute inset-0 bg-grid opacity-30"></div>
+<div class="absolute -top-1/4 -left-1/4 h-1/2 w-1/2 rounded-full bg-primary/20 blur-3xl"></div>
+<div class="absolute -bottom-1/4 -right-1/4 h-1/2 w-1/2 rounded-full bg-primary/10 blur-3xl"></div>
+<header class="sticky top-0 z-50 w-full backdrop-blur-md">
+<div class="container mx-auto">
+<div class="flex items-center justify-between p-4">
 <div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-3xl">hub</span>
-<h1 class="text-zinc-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">IdeaHub Blog</h1>
+<svg class="h-8 w-8 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-12h2v2h-2v-2zm0 4h2v6h-2v-6z"></path>
+<path d="M12.01 10.5c.84 0 1.52-.68 1.52-1.52S12.85 7.46 12.01 7.46c-.84 0-1.52.68-1.52 1.52s.68 1.52 1.52 1.52zm0 0c.84 0 1.52-.68 1.52-1.52S12.85 7.46 12.01 7.46c-.84 0-1.52.68-1.52 1.52s.68 1.52 1.52 1.52zm3.17-5.55c-.18-.52-.67-.88-1.24-.88H9.06c-.57 0-1.06.36-1.24.88L6 11.55v.98c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-.98l-1.82-6.55zM12 18.5c2.49 0 4.5-2.01 4.5-4.5H7.5c0 2.49 2.01 4.5 4.5 4.5z"></path>
+</svg>
+<h1 class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">IdeaValidator</h1>
 </div>
-<div class="flex items-center justify-end">
-<button class="flex items-center justify-center rounded-full h-12 w-12 bg-transparent text-zinc-900 dark:text-white">
-<span class="material-symbols-outlined text-2xl">search</span>
+<nav class="hidden md:flex items-center gap-8 mx-auto">
+<a class="text-text-dark-secondary hover:text-white text-sm font-bold leading-normal tracking-[0.015em]" href="https://ideavalidator-reddit.vercel.app/how-it-works">How It Works</a>
+<a class="text-text-dark-secondary hover:text-white text-sm font-bold leading-normal tracking-[0.015em]" href="https://ideavalidator-reddit.vercel.app/pricing">Pricing</a>
+<a class="text-text-dark-secondary hover:text-white text-sm font-bold leading-normal tracking-[0.015em]" href="https://ideavalidator-reddit.vercel.app/blog">Blog</a>
+<a class="text-text-dark-secondary hover:text-white text-sm font-bold leading-normal tracking-[0.015em]" href="https://ideavalidator-reddit.vercel.app/about">About</a>
+</nav>
+<div class="hidden md:flex items-center"><a class="bg-primary text-white flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 text-sm font-bold leading-normal tracking-[0.015em]" href="#"><span class="truncate">Sign Up</span></a></div>
+<div class="md:hidden">
+<button class="text-white">
+<span class="material-symbols-outlined">menu</span>
 </button>
 </div>
 </div>
 </div>
 </header>
-<main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<!-- Category Chips -->
-<div class="py-6">
-<div class="flex gap-3 overflow-x-auto pb-2 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8" style="scrollbar-width: none;">
-<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary pl-4 pr-4 text-white text-sm font-medium leading-normal">
-                        All
-                    </button>
-<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-zinc-200/50 dark:bg-zinc-800/50 pl-4 pr-4 text-zinc-900 dark:text-white text-sm font-medium leading-normal hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">
-                        Validation Techniques
-                    </button>
-<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-zinc-200/50 dark:bg-zinc-800/50 pl-4 pr-4 text-zinc-900 dark:text-white text-sm font-medium leading-normal hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">
-                        Market Research
-                    </button>
-<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-zinc-200/50 dark:bg-zinc-800/50 pl-4 pr-4 text-zinc-900 dark:text-white text-sm font-medium leading-normal hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">
-                        Founder Stories
-                    </button>
-<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-zinc-200/50 dark:bg-zinc-800/50 pl-4 pr-4 text-zinc-900 dark:text-white text-sm font-medium leading-normal hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors">
-                        Product Strategy
-                    </button>
+<main class="container mx-auto px-4 py-8 md:py-16 relative z-10">
+<div class="text-center mb-12 md:mb-16">
+<h2 class="text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">From the Idea Log</h2>
+<p class="text-text-dark-secondary text-lg mt-2 max-w-2xl mx-auto">Insights on validation, innovation, and turning ideas into reality.</p>
 </div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="flex flex-col gap-4 rounded-xl border border-border-dark bg-surface-dark/50 p-6 transform hover:scale-[1.03] transition-transform duration-300 group">
+<div class="overflow-hidden rounded-lg">
+<img alt="Abstract image representing AI and creativity." class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2ix2Yg4yf7Yu1xQSKk4l4g1XZfOhj-zhCg5x68SmEtLT1YnbNkTEb1pJUaL-hSDX9xjBgl2FaVxKnij-XrR6GZc3MxGMnKtJ6aGqh2L2TdmFrXAWwv7eaqgC0HrbQmhbs8NHIRSGejjk3mecwmRICWH8sFURFmvf-WEp2DDxXUmfhrKUU8WQukQ_eOtOCX3a_C97MzoVltuFW-FaLXrgo3ETGAO2KiZWWFhJsVSCDALqZBGYLt2e3Ifd2DvHE-ZHh9cI4oFOJJ60"/>
 </div>
-<!-- Featured Card -->
-<div class="pb-8 @container">
-<div class="flex flex-col items-stretch justify-start rounded-lg @xl:flex-row @xl:items-start bg-zinc-100 dark:bg-zinc-900/50 overflow-hidden">
-<div class="w-full bg-center bg-no-repeat aspect-video bg-cover @xl:w-3/5" data-alt="Abstract purple and blue geometric shapes on a dark background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDHprk6QUfbcFrMD_-Jf3l_gcHFHJHO_JaBjJL2In_22o7FeeD1kwHK_GWLN1Kk7gkf4LMy-QE5xERugSZDbGdUGMpm3P98ByEQEB3ryAfh0H1i1P-oCbZQutqnU4tqZI3SJcGJub4G-5hbAK86vzRjKaBHE5D868e9rf9sU7E4zw6MZugAPbI2ZKLpUqqKxs8JwVNnHG-byHPFLxTl882t-6tdjeUivT_aMFHpbRxGcwTsVQE9MrFwTe_OTVRUXC2MY3zKHrW97IU");'></div>
-<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-4 p-6 @xl:p-8">
-<p class="text-primary text-sm font-bold leading-normal uppercase tracking-wider">Featured</p>
-<p class="text-zinc-900 dark:text-white text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em]">Is Your Idea Worth Pursuing? 5 Validation Tests to Run Today</p>
 <div class="flex flex-col gap-2">
-<p class="text-zinc-600 dark:text-zinc-400 text-base font-normal leading-normal">
-                                Don't waste time on a failing idea. Here are five crucial tests to validate your concept before you write a single line of code.
-                            </p>
-<p class="text-zinc-500 dark:text-zinc-500 text-sm font-normal leading-normal">John Doe • 2 days ago</p>
+<p class="text-primary text-sm font-bold uppercase tracking-wider">Product</p>
+<h3 class="text-xl font-bold leading-tight tracking-[-0.015em] text-white">
+<a class="hover:underline" href="#">The 5-Minute Validation: How AI Is Changing the Game for Founders</a>
+</h3>
+<p class="text-text-dark-secondary">Discover how artificial intelligence can provide you with crucial market feedback in minutes, not months.</p>
 </div>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-primary text-white text-sm font-medium leading-normal w-fit mt-2">
-<span class="truncate">Read More</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Blog Post Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-16">
-<!-- Card 1 -->
-<div class="flex flex-col gap-4 rounded-lg bg-zinc-100 dark:bg-zinc-900/50 overflow-hidden">
-<div class="w-full bg-center bg-no-repeat aspect-video bg-cover" data-alt="A person sketching ideas on a napkin in a cafe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4_sibtnggjbexbV92d5PVOmSD4MffJIG8520Sb3rIed_8HYtzUddLlOkBPfgnJLfaQ0lSKICkcFG5gabGr3_TpGiadvArA3Rn0cC-YtnSA6e1kASKiIUARFbFGU8J6K2RviKl8kO0ibtTxZ2Jk2P1Pco2uoE3c_4He1cV4CsNUmg8i3iyywYuFX98O8BmQxnx2Z9p02F4DKy0BKoQXKKtKAUvVqSww3bvNsTAtCSQy-GiA_UXHPuUPkE_0EntQ3plUuhCH_Z47ps");'></div>
-<div class="flex flex-col gap-4 p-6 pt-0">
-<p class="text-primary dark:text-primary/90 text-sm font-bold leading-normal uppercase tracking-wider">Founder Stories</p>
-<p class="text-zinc-900 dark:text-white text-xl font-bold leading-tight">From Napkin Sketch to MVP: A Founder's Journey</p>
-<p class="text-zinc-600 dark:text-zinc-400 text-sm font-normal leading-normal">
-                            Follow the step-by-step process of turning a simple concept into a market-ready Minimum Viable Product.
-                        </p>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-5 bg-zinc-200/80 dark:bg-zinc-800 text-zinc-900 dark:text-white text-sm font-medium leading-normal w-fit mt-2 hover:bg-zinc-200 dark:hover:bg-zinc-700/80 transition-colors">
-<span class="truncate">Read More</span>
-</button>
+<div class="flex items-center gap-3 mt-2">
+<img alt="Author photo" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl-tV3znzgKbFKki-OyTZNIYf_r35VLXT1K8Sni9ZJYNV6SsmcZ1mm2HGguJjUX05__Te_y1BL-q47QOMJkCDdLfmjgC1VZr3BScb03bnL8dj3CSt1H8QDRUFLxbLLPvlN3jQ5YMpXZUh5YobsR8yA16W-pX2vJM97dKwKxFZ01-oH9ZH74e124QQbtmzz6BlKsMCiNlwb82mMMcUucGIjMV5Jucw51SIUITGnmzj4EjuXd2A3j31luxRE7I99alszwIXXJGv7ySo"/>
+<div>
+<p class="text-sm font-semibold text-white">Sarah Chen</p>
+<p class="text-xs text-text-dark-secondary">July 22, 2024</p>
 </div>
 </div>
-<!-- Card 2 -->
-<div class="flex flex-col gap-4 rounded-lg bg-zinc-100 dark:bg-zinc-900/50 overflow-hidden">
-<div class="w-full bg-center bg-no-repeat aspect-video bg-cover" data-alt="A dashboard with charts and metrics" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPxMsoMKzCQ5eVYvfV_I4fexHjOuLcYy4ENPHZyF_xzRwx3rerVsQnPVhmioxjcMNxri_Is7fesAHRaR2TBklrquWhxkkLYAKQCs7JL2L8VmuymLztGxrbUjMNU6GqS2cp2F3yONIIzO-GfSyNVoSbfC9iP-46DBIe_kE7kkd_8g6wuboFTJ12Q6l8WXfrn1ygMb8NNikOv7DOa3un1HKxxtOvlE_7pgibcaDjym_UBNmFzr99J8DUbNrDn-xBAc6Nqh1wCcGkRqQ");'></div>
-<div class="flex flex-col gap-4 p-6 pt-0">
-<p class="text-primary dark:text-primary/90 text-sm font-bold leading-normal uppercase tracking-wider">Market Research</p>
-<p class="text-zinc-900 dark:text-white text-xl font-bold leading-tight">The Top 3 Metrics to Track Before Building Anything</p>
-<p class="text-zinc-600 dark:text-zinc-400 text-sm font-normal leading-normal">
-                            Discover the key performance indicators that will tell you if your product has potential before you invest heavily.
-                        </p>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-5 bg-zinc-200/80 dark:bg-zinc-800 text-zinc-900 dark:text-white text-sm font-medium leading-normal w-fit mt-2 hover:bg-zinc-200 dark:hover:bg-zinc-700/80 transition-colors">
-<span class="truncate">Read More</span>
-</button>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-border-dark bg-surface-dark/50 p-6 transform hover:scale-[1.03] transition-transform duration-300 group">
+<div class="overflow-hidden rounded-lg">
+<img alt="Image showing a chart with an upward trend." class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyasc5SvUgKm7tVE46pCwm3qvFc9PEmbWfjt0x3aeuiTysQrneEwclYyJTbp7S0GzlBGYgju6eAu30Zex_JeXqGRxMhZXnnF6ZYwKP1cXSu1pNJ3MGvOMo5BDFqJBr55q3V0S79Pr64NPwLhoYouBXSshzS950t--mLT1orK9-4LzM4Ju7nzBmXu-u9IMZ3BnVUJvaay_Sma99pGiWOzu2DyE2KHXqqstKodZ5c1YDu6Fm8phqVJvV5RkyZiL2oxfmhvm56pgCJQo"/>
+</div>
+<div class="flex flex-col gap-2">
+<p class="text-primary text-sm font-bold uppercase tracking-wider">Market Analysis</p>
+<h3 class="text-xl font-bold leading-tight tracking-[-0.015em] text-white">
+<a class="hover:underline" href="#">Is Your 'Good Idea' Actually a Good Business?</a>
+</h3>
+<p class="text-text-dark-secondary">We break down the key differences and show you how to analyze your idea for real market potential.</p>
+</div>
+<div class="flex items-center gap-3 mt-2">
+<img alt="Author photo" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVdpIqrirjoB8czbQGhqNu2d1if_IjBQkTXWj_liRYA31ZKJv-NQkc-yVvvM-iCjf8p2ZWrvTuwTpi97EU9ovCSGbfYLymFDJUgcO42cacbmX0L3VMqW4L0yAHwcYnG8LNl7Moato4Wp1QZEOvWGmx-e0oayL_vfoBumbDucm2PmJ7LH0pyZA4AZecwWg1r1bH63yhu1S7PGL4YMWDGobszUoYafncM8g3hOc0hupF8GrXHADD5AL44Z9AO4lYOTFB13RBI6VJUqw"/>
+<div>
+<p class="text-sm font-semibold text-white">Michael B.</p>
+<p class="text-xs text-text-dark-secondary">July 15, 2024</p>
 </div>
 </div>
-<!-- Card 3 -->
-<div class="flex flex-col gap-4 rounded-lg bg-zinc-100 dark:bg-zinc-900/50 overflow-hidden">
-<div class="w-full bg-center bg-no-repeat aspect-video bg-cover" data-alt="A designer presenting a product strategy on a whiteboard" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbFtfMQrZd6JQAqtXsNYuKdY31lvp9gn-V5MEKh5YLpFfHe08QTXIp_UPrwzLQIYxr38g6W9AdES237JCYqXz9mVrwZ3MuKHM-_YewjfNXnQHsGVUoNL7pjhGmdr0t2UjP9gIcUmKwBadnHVC3IjpRaSq0uMb8LIGfLA_9VIuFoSCQw71a5YZTi2n1961CNV4GS1JZHDwf7t6FeMPDQ4XEGoJ2oK7JAb4sPBc5wIH_4SvlzIhOSaS9NEIoVcN5xIbqH2A1odA97VQ");'></div>
-<div class="flex flex-col gap-4 p-6 pt-0">
-<p class="text-primary dark:text-primary/90 text-sm font-bold leading-normal uppercase tracking-wider">Product Strategy</p>
-<p class="text-zinc-900 dark:text-white text-xl font-bold leading-tight">Crafting a Product Roadmap that Aligns with Your Vision</p>
-<p class="text-zinc-600 dark:text-zinc-400 text-sm font-normal leading-normal">
-                            Learn how to build a flexible and effective product roadmap that guides your team and inspires stakeholders.
-                        </p>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-5 bg-zinc-200/80 dark:bg-zinc-800 text-zinc-900 dark:text-white text-sm font-medium leading-normal w-fit mt-2 hover:bg-zinc-200 dark:hover:bg-zinc-700/80 transition-colors">
-<span class="truncate">Read More</span>
-</button>
 </div>
+<div class="flex flex-col gap-4 rounded-xl border border-border-dark bg-surface-dark/50 p-6 transform hover:scale-[1.03] transition-transform duration-300 group">
+<div class="overflow-hidden rounded-lg">
+<img alt="Illustration of a person having a lightbulb moment." class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHj3cnRqC_IDr2ROZMG_KJVkYwxCTsQrnWT7otRlnWh0xIpTJlBsw6RxEWok3a1tJIBbrtsmKsXG-iesdmByfcBTWDjKgN2BeAKGhknZBM5jrHNtNYwQ0j9NxlGG8Jsc9dwelVfEdS0u0TjiOFWxZSol619kWrb16OcY9ZnfgGkbN0ge9b6BUqpZJkB0W6-TCMs-z68VlHtbpvK6v8tvMAyfzghXfy5KlW94fUHz9JWgAffPLOic6s-DSl_zGvvxLehGLhP-ZkjUI"/>
+</div>
+<div class="flex flex-col gap-2">
+<p class="text-primary text-sm font-bold uppercase tracking-wider">Innovation</p>
+<h3 class="text-xl font-bold leading-tight tracking-[-0.015em] text-white">
+<a class="hover:underline" href="#">From Napkin Sketch to Market-Ready: A Founder's Checklist</a>
+</h3>
+<p class="text-text-dark-secondary">Follow our step-by-step guide to ensure you haven't missed any critical validation stages.</p>
+</div>
+<div class="flex items-center gap-3 mt-2">
+<img alt="Author photo" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2-NxQ5lNCg7DpW8ZFHyDXjzWI2YixLa--iYSa3kZKWRZm40STznH-C8I1EliBmIX8SyTFk8Iba5gJKBp7JFY_E6VOD3hu9slDr7WkvI_brzDYxh3wQ52empkFFzjCLO9R1uWjh-YtE8_E6XDZ74vEuMpRWNWYOUgND8VlwYqSZhjum9zxtQoCDvgXTNd6hV5LF9BZTo-IWdnY94izsXqTUAibg05XC4E2K3TAECvm80bPhhdDQsQLOxuAMRY04ctLkxamB9yvQbc"/>
+<div>
+<p class="text-sm font-semibold text-white">Jasmine Lee</p>
+<p class="text-xs text-text-dark-secondary">July 8, 2024</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-border-dark bg-surface-dark/50 p-6 transform hover:scale-[1.03] transition-transform duration-300 group">
+<div class="overflow-hidden rounded-lg">
+<img alt="Image of various colorful data points and nodes." class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQNExMxLgxQbzWFjbXKNNfBiukl-FQKW-3PhfkKiLhKy-x7HeCQSq_-5DGhHOHpeULt8BV_7Ugx94AvIC2AeuTfMoosh3IV334Krwurne5w8siMEtCfWNQgRmaKGg9-io7D5mNikMg1WJCbbte7Lo9gtEHi2Glo_BaN3extoWWXn6RKyaSTDSCo97MRoPIXUFwp3ZmDFksqForWd5zEC48U7VIlC5555P2Gt1fY1PqyRYLcY8d2lSCERWeEkFe7__VlOSoxdr3v_I"/>
+</div>
+<div class="flex flex-col gap-2">
+<p class="text-primary text-sm font-bold uppercase tracking-wider">Data</p>
+<h3 class="text-xl font-bold leading-tight tracking-[-0.015em] text-white">
+<a class="hover:underline" href="#">Beyond the Hype: Using Sentiment Analysis to Truly Understand Your Audience</a>
+</h3>
+<p class="text-text-dark-secondary">Learn how to leverage sentiment data to build products that people genuinely want and need.</p>
+</div>
+<div class="flex items-center gap-3 mt-2">
+<img alt="Author photo" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVdpIqrirjoB8czbQGhqNu2d1if_IjBQkTXWj_liRYA31ZKJv-NQkc-yVvvM-iCjf8p2ZWrvTuwTpi97EU9ovCSGbfYLymFDJUgcO42cacbmX0L3VMqW4L0yAHwcYnG8LNl7Moato4Wp1QZEOvWGmx-e0oayL_vfoBumbDucm2PmJ7LH0pyZA4AZecwWg1r1bH63yhu1S7PGL4YMWDGobszUoYafncM8g3hOc0hupF8GrXHADD5AL44Z9AO4lYOTFB13RBI6VJUqw"/>
+<div>
+<p class="text-sm font-semibold text-white">Michael B.</p>
+<p class="text-xs text-text-dark-secondary">June 30, 2024</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-border-dark bg-surface-dark/50 p-6 transform hover:scale-[1.03] transition-transform duration-300 group">
+<div class="overflow-hidden rounded-lg">
+<img alt="A person looking at a crossroads, symbolizing a pivot." class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf6BXYZ9IEeaki9y-MrjzIMoBO5Qqcg8Eg8MDt5LnD3anKvgojcWsyT7AFg77ognJj7Q22AisNWbdWvdwF1jt0VDviOFYhpgnQQcYeO_udcqT2lcqtqRD_EroReWDdk8p-zEB_aFWslObb-HQmwovLE1r4ksF1NREHhcgU0DJf3-epct02jSgD8hwAE0JmmfMO7icojk-4cJ7k_YF_53UUB0fTNKNMnYAYhAtdNE9FSW11cjGVMNuvTb8gJMAun2S1HHO7QrPnpWY"/>
+</div>
+<div class="flex flex-col gap-2">
+<p class="text-primary text-sm font-bold uppercase tracking-wider">Strategy</p>
+<h3 class="text-xl font-bold leading-tight tracking-[-0.015em] text-white">
+<a class="hover:underline" href="#">The Art of the Pivot: When and How to Change Direction</a>
+</h3>
+<p class="text-text-dark-secondary">Pivoting isn't failure; it's smart strategy. Here's how to know when it's time to adapt your idea.</p>
+</div>
+<div class="flex items-center gap-3 mt-2">
+<img alt="Author photo" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2-NxQ5lNCg7DpW8ZFHyDXjzWI2YixLa--iYSa3kZKWRZm40STznH-C8I1EliBmIX8SyTFk8Iba5gJKBp7JFY_E6VOD3hu9slDr7WkvI_brzDYxh3wQ52empkFFzjCLO9R1uWjh-YtE8_E6XDZ74vEuMpRWNWYOUgND8VlwYqSZhjum9zxtQoCDvgXTNd6hV5LF9BZTo-IWdnY94izsXqTUAibg05XC4E2K3TAECvm80bPhhdDQsQLOxuAMRY04ctLkxamB9yvQbc"/>
+<div>
+<p class="text-sm font-semibold text-white">Jasmine Lee</p>
+<p class="text-xs text-text-dark-secondary">June 21, 2024</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-border-dark bg-surface-dark/50 p-6 transform hover:scale-[1.03] transition-transform duration-300 group">
+<div class="overflow-hidden rounded-lg">
+<img alt="Close-up of a keyboard with one key highlighted." class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTlu7980BXxM9MM3O0KsR_kcrwg-J-mZrXbEVTUJ6oVfutSWIEGKUFCIFW8HX9je6Yz05cbbox8X5GEieC0oMDjg2zWEdt85sqlUrSVPINuAyJxF9x9QkHo6uJGONtPLY1qP3XoEVKGf9JPmkKt_gECwQ3yT1Ujyjmqa5sS-3spGHKPUe-xXpgl-tTYFPzsTerbdYY16uDVLM9Q2o4F5gQO5FkfxFlV-XxxdxVPqgZqVir-sil8QqWZFZtBG89jSmVA2wijjHSPpU"/>
+</div>
+<div class="flex flex-col gap-2">
+<p class="text-primary text-sm font-bold uppercase tracking-wider">Product</p>
+<h3 class="text-xl font-bold leading-tight tracking-[-0.015em] text-white">
+<a class="hover:underline" href="#">Top 3 Free Tools for Early-Stage Idea Validation</a>
+</h3>
+<p class="text-text-dark-secondary">Before you spend a dime, leverage these powerful (and free) resources to test your concept.</p>
+</div>
+<div class="flex items-center gap-3 mt-2">
+<img alt="Author photo" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl-tV3znzgKbFKki-OyTZNIYf_r35VLXT1K8Sni9ZJYNV6SsmcZ1mm2HGguJjUX05__Te_y1BL-q47QOMJkCDdLfmjgC1VZr3BScb03bnL8dj3CSt1H8QDRUFLxbLLPvlN3jQ5YMpXZUh5YobsR8yA16W-pX2vJM97dKwKxFZ01-oH9ZH74e124QQbtmzz6BlKsMCiNlwb82mMMcUucGIjMV5Jucw51SIUITGnmzj4EjuXd2A3j31luxRE7I99alszwIXXJGv7ySo"/>
+<div>
+<p class="text-sm font-semibold text-white">Sarah Chen</p>
+<p class="text-xs text-text-dark-secondary">June 14, 2024</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-16 flex justify-center">
+<div class="flex items-center gap-2">
+<a class="flex h-10 w-10 items-center justify-center rounded-lg border border-border-dark bg-surface-dark/50 text-text-dark-secondary hover:bg-surface-dark" href="#">1</a>
+<a class="flex h-10 w-10 items-center justify-center rounded-lg border border-border-dark bg-surface-dark/50 text-text-dark-secondary hover:bg-surface-dark" href="#">2</a>
+<a class="flex h-10 w-10 items-center justify-center rounded-lg border border-border-dark bg-surface-dark/50 text-text-dark-secondary hover:bg-surface-dark" href="#">3</a>
+<a class="flex h-10 w-10 items-center justify-center rounded-lg border border-border-dark bg-surface-dark/50 text-text-dark-secondary hover:bg-surface-dark" href="#">
+<span class="material-symbols-outlined">chevron_right</span>
+</a>
 </div>
 </div>
 </main>
+<footer class="mt-24 border-t border-border-dark relative z-10">
+<div class="container mx-auto px-4 py-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-text-dark-secondary text-sm">© 2024 IdeaValidator. All rights reserved.</p>
+<div class="flex items-center gap-2">
+<svg class="h-6 w-6 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-12h2v2h-2v-2zm0 4h2v6h-2v-6z"></path>
+<path d="M12.01 10.5c.84 0 1.52-.68 1.52-1.52S12.85 7.46 12.01 7.46c-.84 0-1.52.68-1.52 1.52s.68 1.52 1.52 1.52zm0 0c.84 0 1.52-.68 1.52-1.52S12.85 7.46 12.01 7.46c-.84 0-1.52.68-1.52 1.52s.68 1.52 1.52 1.52zm3.17-5.55c-.18-.52-.67-.88-1.24-.88H9.06c-.57 0-1.06.36-1.24.88L6 11.55v.98c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-.98l-1.82-6.55zM12 18.5c2.49 0 4.5-2.01 4.5-4.5H7.5c0 2.49 2.01 4.5 4.5 4.5z"></path>
+</svg>
+<h2 class="text-white text-lg font-bold">IdeaValidator</h2>
 </div>
+</div>
+</div>
+</footer>
+</div>
+
 </body></html>
