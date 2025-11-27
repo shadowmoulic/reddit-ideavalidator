@@ -50,11 +50,7 @@
       background-size: 3rem 3rem;
     }
   </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
+
   </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-text-light">
 <div class="relative min-h-screen w-full overflow-x-hidden">
@@ -90,7 +86,7 @@
 <h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-6xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]"> Stop Guessing. Start Validating. </h1>
 <h2 class="text-text-dark-secondary text-base font-normal leading-normal @[480px]:text-lg @[480px]:font-normal @[480px]:leading-normal max-w-2xl mx-auto"> Get instant, data-driven feedback on your startup idea. </h2>
 </div>
-<form action="https://uwx9zm0i.rpcl.app/form/d14a07ce-0a70-4c8f-b146-b54daf9e628b" method="POST" class="flex flex-col min-w-40 h-14 w-full max-w-[580px] mt-4 @[480px]:h-16">
+<form action="https://uwx9zm0i.rpcl.app/webhook/7d6cd815-f2b1-4ccd-bb8e-75bd2ef90ea6" method="POST" class="flex flex-col min-w-40 h-14 w-full max-w-[580px] mt-4 @[480px]:h-16">
   <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
     <div class="text-text-dark-secondary flex border border-border-dark bg-surface-dark items-center justify-center pl-[15px] rounded-l-lg border-r-0">
       <span class="material-symbols-outlined">search</span>
@@ -111,12 +107,20 @@
 <p class="text-sm font-bold uppercase tracking-widest text-primary">Simple Pricing</p>
 <h3 class="text-white text-3xl font-bold leading-tight tracking-[-0.02em] mt-2">Validate your first 3 ideas for free.</h3>
 <p class="text-text-dark-secondary mt-3 max-w-xl mx-auto">No credit card required. Get full access to our powerful validation engine and see the potential of your ideas without any commitment.</p>
-<a class="bg-white/10 hover:bg-white/20 text-white flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 text-base font-bold leading-normal tracking-[0.015em] mt-8 w-fit mx-auto" href="#">
+<a class="bg-white/10 hover:bg-white/20 text-white flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 text-base font-bold leading-normal tracking-[0.015em] mt-8 w-fit mx-auto" href="https://ideavalidator-reddit.vercel.app/pricing">
 <span class="truncate">See Full Pricing</span>
 <span class="material-symbols-outlined ml-2">arrow_forward</span>
 </a>
 </div>
 </section>
+
+<div id="loading-spinner" class="hidden fixed inset-0 bg-background-dark/80 flex items-center justify-center z-50">
+    <svg class="animate-spin h-10 w-10 text-primary" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+</div>
+
 <section class="mb-16 md:mb-24">
 <h4 class="text-text-dark-secondary text-sm font-bold leading-normal tracking-[0.015em] px-4 py-2 text-center">Your Validation Report</h4>
 <div class="flex flex-col p-4">
@@ -204,4 +208,40 @@
 </footer>
 </div>
 
-</body></html>
+</body>
+<script>
+    const form = document.querySelector('form');
+    const spinner = document.getElementById('loading-spinner');
+    const ideaInput = document.querySelector('input[name="WhatsYourIdea"]');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Stop page navigation
+
+        spinner.classList.remove('hidden'); // SHOW spinner
+
+        // Send data to the n8n Webhook
+        fetch(form.action, {
+            method: 'POST',
+            headers: {
+                // Use this content type for simple form data posts
+                'Content-Type': 'application/x-www-form-urlencoded', 
+            },
+            body: new URLSearchParams({
+                // Ensure the key name matches the n8n Set node expression
+                'WhatsYourIdea': ideaInput.value 
+            })
+        })
+        .then(response => {
+            // If n8n runs successfully (Status 200)
+            spinner.classList.add('hidden'); // HIDE spinner
+            // Future step: Update the "Awaiting Idea Submission" section here
+            alert("Idea submitted successfully! Your validation report is processing."); 
+        })
+        .catch(error => {
+            console.error('Submission failed:', error);
+            spinner.classList.add('hidden');
+            alert("Submission failed. Please check the idea and try again.");
+        });
+    });
+</script>
+</html>
