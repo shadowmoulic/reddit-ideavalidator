@@ -224,37 +224,26 @@
 
 
 <script>
-document.querySelector('form').addEventListener('submit', async (e) => {
+document.querySelector('form').onsubmit = async (e) => {
   e.preventDefault();
-  const formData = new FormData(e.target);
-  const loading = document.getElementById('loading-spinner');
-  const reportSection = document.querySelector('section:last-child .flex.flex-col.p-4');
-  loading.classList.remove('hidden');
+  document.getElementById('loading-spinner').classList.remove('hidden');
   
-  try {
-    const res = await fetch(e.target.action, { method: 'POST', body: formData });
-    const data = await res.json();
-    loading.classList.add('hidden');
-    
-    // Update report
-    reportSection.innerHTML = `
-      <div class="flex flex-col items-center gap-6 rounded-lg border-2 border-solid border-primary px-6 py-14 bg-surface-dark/50">
-        <div class="flex max-w-[480px] flex-col items-center gap-2">
-          <p class="text-white text-lg font-bold leading-tight tracking-[-0.015em] max-w-[480px] text-center">${data.message || 'Validation Complete'}</p>
-          <div class="text-left w-full">
-            <p><strong>Score:</strong> 8.2/10</p>
-            <p><strong>Sentiment:</strong> Positive</p>
-            <p><strong>Market:</strong> High Potential</p>
-            <p class="mt-4">${data.content || 'See details above.'}</p>
-          </div>
-        </div>
-      </div>
-    `;
-  } catch (err) {
-    loading.classList.add('hidden');
-    alert('Error: ' + err.message);
-  }
-});
+  const idea = document.querySelector('input[name="WhatsYourIdea"]').value;
+  const res = await fetch(e.target.action, {
+    method: 'POST',
+    body: new FormData(e.target)
+  });
+  
+  const data = await res.json();
+  document.getElementById('loading-spinner').classList.add('hidden');
+  
+  document.querySelector('section:last-child .flex-col.p-4').innerHTML = `
+    <div class="bg-surface-dark/50 border border-primary rounded-xl p-8 text-left">
+      <h3 class="text-2xl font-bold text-white mb-6">Validation Report</h3>
+      <pre class="text-white whitespace-pre-wrap font-sans text-sm leading-relaxed">${data.content || data.message}</pre>
+    </div>
+  `;
+};
 </script>
 
 
