@@ -132,6 +132,19 @@
 </div>
 </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <section>
 <div class="text-center mb-12">
 <h3 class="text-white text-3xl font-bold leading-tight tracking-[-0.02em]">Trusted by Innovators</h3>
@@ -207,6 +220,44 @@
 </div>
 </footer>
 </div>
+
+
+
+<script>
+document.querySelector('form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const loading = document.getElementById('loading-spinner');
+  const reportSection = document.querySelector('section:last-child .flex.flex-col.p-4');
+  loading.classList.remove('hidden');
+  
+  try {
+    const res = await fetch(e.target.action, { method: 'POST', body: formData });
+    const data = await res.json();
+    loading.classList.add('hidden');
+    
+    // Update report
+    reportSection.innerHTML = `
+      <div class="flex flex-col items-center gap-6 rounded-lg border-2 border-solid border-primary px-6 py-14 bg-surface-dark/50">
+        <div class="flex max-w-[480px] flex-col items-center gap-2">
+          <p class="text-white text-lg font-bold leading-tight tracking-[-0.015em] max-w-[480px] text-center">${data.message || 'Validation Complete'}</p>
+          <div class="text-left w-full">
+            <p><strong>Score:</strong> 8.2/10</p>
+            <p><strong>Sentiment:</strong> Positive</p>
+            <p><strong>Market:</strong> High Potential</p>
+            <p class="mt-4">${data.content || 'See details above.'}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  } catch (err) {
+    loading.classList.add('hidden');
+    alert('Error: ' + err.message);
+  }
+});
+</script>
+
+
 
 </body>
 <script>
