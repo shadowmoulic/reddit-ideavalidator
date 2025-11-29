@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - IdeaValidator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#f24a0d",
+            "background-light": "#f8f6f5",
+            "background-dark": "#111111",
+            "surface-dark": "#221510",
+            "text-light": "#EAEAEA",
+            "text-dark-secondary": "#cba090",
+            "border-dark": "#684031"
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: 100dvh;
+    }
+    .bg-grid {
+      background-image: linear-gradient(rgba(104, 64, 49, 0.2) 1px, transparent 1px), linear-gradient(to right, rgba(104, 64, 49, 0.2) 1px, transparent 1px);
+      background-size: 3rem 3rem;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-text-light">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="absolute inset-0 bg-grid opacity-30"></div>
+<div class="absolute -top-1/4 -left-1/4 h-1/2 w-1/2 rounded-full bg-primary/20 blur-3xl"></div>
+<div class="absolute -bottom-1/4 -right-1/4 h-1/2 w-1/2 rounded-full bg-primary/10 blur-3xl"></div>
+<main class="flex flex-1 flex-col justify-center px-4 py-12 relative z-10">
+<div class="w-full max-w-sm mx-auto">
+<div class="flex flex-col items-center text-center mb-10">
+<div class="flex items-center gap-2 mb-4">
+<svg class="h-10 w-10 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.01 10.5c.84 0 1.52-.68 1.52-1.52S12.85 7.46 12.01 7.46c-.84 0-1.52.68-1.52 1.52s.68 1.52 1.52 1.52zm0 0c.84 0 1.52-.68 1.52-1.52S12.85 7.46 12.01 7.46c-.84 0-1.52.68-1.52 1.52s.68 1.52 1.52 1.52zm3.17-5.55c-.18-.52-.67-.88-1.24-.88H9.06c-.57 0-1.06.36-1.24.88L6 11.55v.98c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-.98l-1.82-6.55zM12 18.5c2.49 0 4.5-2.01 4.5-4.5H7.5c0 2.49 2.01 4.5 4.5 4.5z"></path>
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
+</svg>
+<h1 class="text-white text-3xl font-bold leading-tight tracking-[-0.015em]">IdeaValidator</h1>
+</div>
+<h2 class="text-white text-2xl font-bold leading-tight tracking-[-0.033em]">Welcome Back</h2>
+<p class="text-text-dark-secondary text-base font-normal leading-normal mt-2">Login to continue validating.</p>
+</div>
+<form class="space-y-6">
+<div>
+<label class="text-sm font-medium text-text-dark-secondary" for="email">Email</label>
+<div class="relative mt-2">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-dark-secondary">mail</span>
+<input class="form-input block w-full rounded-lg border border-border-dark bg-surface-dark py-3 pl-10 pr-4 text-text-light placeholder:text-text-dark-secondary/70 focus:border-primary focus:ring-primary" id="email" name="email" placeholder="you@example.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="text-sm font-medium text-text-dark-secondary" for="password">Password</label>
+<div class="relative mt-2">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-dark-secondary">lock</span>
+<input class="form-input block w-full rounded-lg border border-border-dark bg-surface-dark py-3 pl-10 pr-4 text-text-light placeholder:text-text-dark-secondary/70 focus:border-primary focus:ring-primary" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<div class="flex items-center justify-end">
+<a class="text-sm font-medium text-primary hover:text-primary/80" href="#">
+              Forgot Password?
+            </a>
+</div>
+<div>
+<button class="flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-dark" type="submit">
+<span class="truncate">Login</span>
+</button>
+</div>
+</form>
+<div class="mt-8 text-center">
+<p class="text-sm text-text-dark-secondary">
+            Don't have an account?
+            <a class="font-medium text-primary hover:text-primary/80" href="#">Sign up</a>
+</p>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>
