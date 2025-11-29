@@ -190,4 +190,35 @@
 </footer>
 </div>
 
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+<script>
+  const client = supabase.createClient(
+    "https://rxbncecsdreugjlipchq.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4Ym5jZWNzZHJldWdqbGlwY2hxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ0MzQ1MjIsImV4cCI6MjA4MDAxMDUyMn0.TZyTZQLm7DfnplPJejs5y5bjZOzGEMC7A7Z1nddiBnM"
+  );
+
+  async function checkUser() {
+    const { data } = await client.auth.getUser();
+    window.currentUser = data.user;
+
+    if (currentUser) {
+      console.log("User logged in:", currentUser.email);
+
+      // show account menu
+      document.querySelector("#signup-button")?.classList.add("hidden");
+      document.querySelector("#profile-menu")?.classList.remove("hidden");
+    } else {
+      console.log("User NOT logged in");
+
+      // show signup button
+      document.querySelector("#signup-button")?.classList.remove("hidden");
+      document.querySelector("#profile-menu")?.classList.add("hidden");
+    }
+  }
+
+  checkUser();
+</script>
+
+
 </body></html>

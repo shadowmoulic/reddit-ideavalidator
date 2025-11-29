@@ -75,7 +75,15 @@
 <a class="text-text-dark-secondary hover:text-white text-sm font-bold leading-normal tracking-[0.015em]" href="https://ideavalidator-reddit.vercel.app/about">About</a>
 </nav>
 
-<div class="flex ml-auto items-center justify-end"><a class="bg-primary text-white flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 text-sm font-bold leading-normal tracking-[0.015em]" href="/signup.html"><span class="truncate">Sign Up</span></a></div>
+<div class="flex ml-auto items-center justify-end"><a id="signup-button" href="/signup.html" class="bg-primary text-white px-4 py-2 rounded">
+  Sign Up
+</a>
+
+<div id="profile-menu" class="hidden">
+  <span class="mr-2">Account</span>
+  <button id="logout-btn" class="text-red-400">Logout</button>
+</div>
+</div>
 </div>
 </div>
 </header>
@@ -259,21 +267,53 @@ document.querySelector('form').onsubmit = async function(e) {
 };
 </script>
 
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
 <script>
-async function checkUser() {
-  const { data } = await supabase.auth.getUser();
-  window.currentUser = data.user;
+  const client = supabase.createClient(
+    "https://rxbncecsdreugjlipchq.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4Ym5jZWNzZHJldWdqbGlwY2hxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ0MzQ1MjIsImV4cCI6MjA4MDAxMDUyMn0.TZyTZQLm7DfnplPJejs5y5bjZOzGEMC7A7Z1nddiBnM"
+  );
 
-  if (currentUser) {
-    console.log("Logged in:", currentUser.email);
+  async function checkUser() {
+    const { data } = await client.auth.getUser();
+    window.currentUser = data.user;
 
-    // Example: Show account menu
-    document.querySelector("#signup-button").classList.add("hidden");
-    document.querySelector("#profile-menu").classList.remove("hidden");
+    if (currentUser) {
+      console.log("User logged in:", currentUser.email);
+
+      // show account menu
+      document.querySelector("#signup-button")?.classList.add("hidden");
+      document.querySelector("#profile-menu")?.classList.remove("hidden");
+    } else {
+      console.log("User NOT logged in");
+
+      // show signup button
+      document.querySelector("#signup-button")?.classList.remove("hidden");
+      document.querySelector("#profile-menu")?.classList.add("hidden");
+    }
+  }
+
+  checkUser();
+</script>
+
+<script>
+async function blockAnonymous() {
+  const { data } = await client.auth.getUser();
+  if (!data.user) {
+    alert("Please sign in to use the validator.");
+    window.location.href = "/signup.html";
   }
 }
+blockAnonymous();
+</script>
 
-checkUser();
+
+<script>
+document.getElementById("logout-btn")?.addEventListener("click", async () => {
+  await client.auth.signOut();
+  window.location.reload();
+});
 </script>
 
 
