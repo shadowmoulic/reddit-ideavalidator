@@ -224,56 +224,39 @@
 <script>
 document.querySelector('form').onsubmit = async function(e) {
   e.preventDefault();
-  
-  const spinner = document.getElementById('loading-spinner');
-  spinner.classList.remove('hidden');
 
-  try {
-    const response = await fetch(this.action, {
-      method: 'POST',
-      body: new FormData(this)
-    });
-
-    let result = {};
-try {
-  result = await response.json();
-} catch(e) {
-  throw new Error("Invalid JSON returned from server");
-}
-    spinner.classList.add('hidden');
-
-    // Replace the "Awaiting Idea Submission" section
-document.getElementById('report-container').innerHTML = `
-      <div class="bg-surface-dark/60 border-2 border-primary rounded-2xl p-10 max-w-4xl mx-auto shadow-2xl">
-        <h3 class="text-3xl font-bold text-white mb-8 text-center">Your Validation Report</h3>
-        <div class="text-white text-lg leading-relaxed whitespace-pre-line font-light">
-          ${(result.output || result.content || '').replace(/\n/g, '<br>')}
-        </div>
-      </div>
-    `;
-  } catch (err) {
-    spinner.classList.add('hidden');
-    alert('Error: ' + err.message);
-  }
-};
-
-
-document.querySelector('form').onsubmit = async function(e) {
-  e.preventDefault();
-
+  // ===== LOGIN CHECK =====
   const { data } = await supabase.auth.getUser();
-
   if (!data.user) {
     alert("Please sign in first.");
     window.location.href = "/signup.html";
     return;
   }
 
-  // Continue with your fetch to n8n
+  // ===== SPINNER =====
+  const spinner = document.getElementById('loading-spinner');
+  spinner.classList.remove('hidden');
+
+  // ===== CALL n8n =====
+  try {
+    const response = await fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this)
+    });
+
+    let result = await response.json();
+    spinner.classList.add('hidden');
+
+    document.getElementById('report-container').innerHTML = `
+      <div class="...">
+        ${(result.output || result.content || '').replace(/\n/g, '<br>')}
+      </div>
+    `;
+  } catch (err) {
+    spinner.classList.add('hidden');
+    alert("Error: " + err.message);
+  }
 };
-
-
-
 </script>
 
 <script>
