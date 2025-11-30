@@ -316,6 +316,29 @@ document.getElementById("logout-btn")?.addEventListener("click", async () => {
 });
 </script>
 
+<script>
+async function blockUnauthorized() {
+  const { data: auth } = await client.auth.getUser();
+  if (!auth.user) {
+    alert("Please sign in to validate ideas.");
+    window.location.href = "/signup.html";
+    return;
+  }
+
+  // Check if user has a plan
+  let { data: purchase } = await client
+    .from("purchases")
+    .select("*")
+    .eq("email", auth.user.email)
+    .single();
+
+  if (!purchase) {
+    alert("Please purchase a plan to use the validator.");
+    window.location.href = "/pricing.html";
+  }
+}
+blockUnauthorized();
+</script>
 
 
 

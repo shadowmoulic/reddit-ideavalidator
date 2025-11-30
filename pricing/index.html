@@ -104,9 +104,13 @@
 <span class="text-text-light">Export reports to PDF</span>
 </li>
 </ul>
-<a class="mt-auto w-full text-center bg-surface-dark border border-primary text-primary flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/10 transition-colors duration-300" href="#">
-<span class="truncate">Choose Monthly</span>
+
+<a id="monthly-btn"
+   class="mt-auto w-full text-center bg-surface-dark border border-primary text-primary flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 text-base font-bold"
+   href="#">
+   <span class="truncate">Choose Monthly</span>
 </a>
+
 </div>
 <div class="relative flex flex-col gap-8 rounded-xl border-2 border-primary bg-surface-dark p-8 text-left">
 <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-sm font-bold text-white">
@@ -138,9 +142,13 @@
 <span class="text-text-light">Access to beta features</span>
 </li>
 </ul>
-<a class="mt-auto w-full text-center bg-primary text-white flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 text-base font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity duration-300" href="#">
-<span class="truncate">Get Lifetime Access</span>
+
+<a id="lifetime-btn"
+   class="mt-auto w-full text-center bg-primary text-white flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 text-base font-bold"
+   href="#">
+   <span class="truncate">Get Lifetime Access</span>
 </a>
+
 </div>
 </div>
 </section>
@@ -188,6 +196,52 @@
   checkUser();
 </script>
 
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+document.getElementById("lifetime-btn").onclick = async function (e) {
+  e.preventDefault();
+
+  // Ensure user is logged in
+  const { data } = await client.auth.getUser();
+  if (!data.user) {
+    alert("Please sign in to purchase.");
+    window.location.href = "/signup.html";
+    return;
+  }
+
+  var options = {
+    "key": "rzp_test_RlnD7zEcwhnDDK", // from Razorpay dashboard
+    "amount": 27300, // 273 USD? Or adjust (in paise). Example ₹27300 = ₹273
+    "currency": "INR",
+    "name": "IdeaValidator",
+    "description": "Lifetime Access",
+    "handler": async function (response) {
+        console.log("Payment success:", response);
+
+        // Store purchase in Supabase
+        await client
+          .from("purchases")
+          .insert([{
+            email: data.user.email,
+            plan: "lifetime",
+            razorpay_payment_id: response.razorpay_payment_id,
+          }]);
+
+        alert("Payment successful! You now have lifetime access.");
+        window.location.href = "/";
+    },
+    "prefill": {
+        "email": data.user.email,
+    },
+    "theme": {
+        "color": "#f24a0d"
+    }
+  };
+
+  var rzp1 = new Razorpay(options);
+  rzp1.open();
+};
+</script>
 
 
 </body></html>
