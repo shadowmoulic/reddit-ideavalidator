@@ -94,7 +94,8 @@
 <h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-6xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]"> Stop Guessing. Start Validating. </h1>
 <h2 class="text-text-dark-secondary text-base font-normal leading-normal @[480px]:text-lg @[480px]:font-normal @[480px]:leading-normal max-w-2xl mx-auto"> Get instant, data-driven feedback on your startup idea. </h2>
 </div>
-<form action="https://uwx9zm0i.rpcl.app/webhook/7d6cd815-f2b1-4ccd-bb8e-75bd2ef90ea6" method="POST" class="flex flex-col min-w-40 h-14 w-full max-w-[580px] mt-4 @[480px]:h-16">
+<p id="usage-bar"></p>
+<form id="idea-form" class="flex flex-col min-w-40 h-14 w-full max-w-[580px] mt-4 @[480px]:h-16">
   <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
     <div class="text-text-dark-secondary flex border border-border-dark bg-surface-dark items-center justify-center pl-[15px] rounded-l-lg border-r-0">
       <span class="material-symbols-outlined">search</span>
@@ -140,10 +141,6 @@
 </div>
 </div>
 </section>
-
-
-
-
 
 
 
@@ -229,120 +226,51 @@
 </footer>
 </div>
 
+<!-- JS -->
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="/js/supabase.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/usage.js"></script>
+<script src="/js/validator.js"></script>
+<script src="/js/ui.js"></script>
+
+
 <script>
-document.querySelector('form').onsubmit = async function(e) {
+const webhook = "https://uwx9zm0i.rpcl.app/webhook/7d6cd815-f2b1-4ccd-bb8e-75bd2ef90ea6";
+
+document.getElementById("idea-form").onsubmit = async (e) => {
   e.preventDefault();
 
-  // ===== LOGIN CHECK =====
-  const { data } = await supabase.auth.getUser();
-  if (!data.user) {
-    alert("Please sign in first.");
-    window.location.href = "/signup.html";
-    return;
-  }
+  const spinner = document.getElementById("loading-spinner");
+  spinner.classList.remove("hidden");
 
-  // ===== SPINNER =====
-  const spinner = document.getElementById('loading-spinner');
-  spinner.classList.remove('hidden');
+  const formData = new FormData(e.target);
 
-  // ===== CALL n8n =====
   try {
-    const response = await fetch(this.action, {
-      method: 'POST',
-      body: new FormData(this)
+    const res = await fetch(webhook, {
+      method: "POST",
+      body: formData
     });
 
-    let result = await response.json();
-    spinner.classList.add('hidden');
+    const output = await res.json();
+    spinner.classList.add("hidden");
 
-    document.getElementById('report-container').innerHTML = `
-      <div class="...">
-        ${(result.output || result.content || '').replace(/\n/g, '<br>')}
+    document.getElementById("report-container").innerHTML = `
+      <div class="bg-surface-dark border border-border-dark p-6 rounded-xl text-white">
+        ${output.content?.replace(/\n/g, "<br>") || output.output}
       </div>
     `;
   } catch (err) {
-    spinner.classList.add('hidden');
+    spinner.classList.add("hidden");
     alert("Error: " + err.message);
   }
 };
 </script>
 
-<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
-<script>
-  const client = supabase.createClient(
-    "https://rxbncecsdreugjlipchq.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4Ym5jZWNzZHJldWdqbGlwY2hxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ0MzQ1MjIsImV4cCI6MjA4MDAxMDUyMn0.TZyTZQLm7DfnplPJejs5y5bjZOzGEMC7A7Z1nddiBnM"
-  );
-
-  async function checkUser() {
-    const { data } = await client.auth.getUser();
-    window.currentUser = data.user;
-
-    if (currentUser) {
-      console.log("User logged in:", currentUser.email);
-
-      // show account menu
-      document.querySelector("#signup-button")?.classList.add("hidden");
-      document.querySelector("#profile-menu")?.classList.remove("hidden");
-    } else {
-      console.log("User NOT logged in");
-
-      // show signup button
-      document.querySelector("#signup-button")?.classList.remove("hidden");
-      document.querySelector("#profile-menu")?.classList.add("hidden");
-    }
-  }
-
-  checkUser();
-</script>
-
-<script>
-async function blockAnonymous() {
-  const { data } = await client.auth.getUser();
-  if (!data.user) {
-    alert("Please sign in to use the validator.");
-    window.location.href = "/signup.html";
-  }
-}
-blockAnonymous();
-</script>
-
-
-<script>
-document.getElementById("logout-btn")?.addEventListener("click", async () => {
-  await client.auth.signOut();
-  window.location.reload();
-});
-</script>
-
-<script>
-async function blockUnauthorized() {
-  const { data: auth } = await client.auth.getUser();
-  if (!auth.user) {
-    alert("Please sign in to validate ideas.");
-    window.location.href = "/signup.html";
-    return;
-  }
-
-  // Check if user has a plan
-  let { data: purchase } = await client
-    .from("purchases")
-    .select("*")
-    .eq("email", auth.user.email)
-    .single();
-
-  if (!purchase) {
-    alert("Please purchase a plan to use the validator.");
-    window.location.href = "/pricing.html";
-  }
-}
-blockUnauthorized();
-</script>
 
 
 
 
 </body>
-
 </html>

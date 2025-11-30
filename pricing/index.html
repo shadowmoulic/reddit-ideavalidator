@@ -243,4 +243,49 @@ document.getElementById("lifetime-btn").onclick = async function (e) {
 </script>
 
 
+<script>
+document.getElementById("monthly-btn").onclick = async function (e) {
+  e.preventDefault();
+
+  const { data } = await client.auth.getUser();
+  if (!data.user) {
+    alert("Please sign in to subscribe.");
+    window.location.href = "/signup.html";
+    return;
+  }
+
+  var options = {
+    "key": "rzp_test_RlnD7zEcwhnDDK",
+    "subscription_id": "sub_RlnSI90diK815g", 
+    "name": "IdeaValidator",
+    "description": "Monthly Subscription",
+    "handler": async function (response) {
+
+      // Store subscription in Supabase
+      await client
+        .from("purchases")
+        .insert([{
+          email: data.user.email,
+          plan: "monthly",
+          razorpay_subscription_id: response.razorpay_subscription_id,
+          status: "active"
+        }]);
+
+      alert("Subscription successful!");
+      window.location.href = "/";
+    },
+    "prefill": {
+      "email": data.user.email,
+    },
+    "theme": { "color": "#f24a0d" }
+  };
+
+  var rzp = new Razorpay(options);
+  rzp.open();
+};
+</script>
+
+
+
+
 </body></html>
