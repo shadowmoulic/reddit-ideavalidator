@@ -1,65 +1,76 @@
-// validator.js
-import { getUsageCount, incrementUsage } from "./usage.js";
-import { getUser } from "./auth.js";
-import { showLoader, hideLoader, toast, showRemaining } from "./ui.js";
+import { supabaseClient } from "./supabase.js";
+import { getUsage, incrementUsage, renderUsageBar } from "./usage.js";
 
-const form = document.querySelector("form");
+const webhook = "https://uwx9zm0i.rpcl.app/webhook/7d6cd815-f2b1-4ccd-bb8e-75bd2ef90ea6";
 
-export async function initValidator() {
-  const used = await getUsageCount();
-  showRemaining(used);
+export function initValidator() {
+  const form = document.getElementById("idea-form");
+  const spinner = document.getElementById("loading-spinner");
 
-  form.onsubmit = async (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const usedNow = await getUsageCount();
 
-    if (usedNow >= 3) {
-      toast("You’ve used your 3 free validations. Sign up to continue!");
+    // 1) Check login
+    const { data: auth } = await supabaseClient.auth.getUser();
+    if (!auth.user) {
+      alert("Please sign in first.");
+      window.location.href = "/signup.html";
+      return;
+    }
+
+    // 2) Usage check
+    const usage = await getUsage();
+    if (usage.count >= 3) {
+      alert("You used all free validations. Upgrade on Pricing page.");
       window.location.href = "/pricing";
       return;
     }
 
-    showLoader();
+    renderUsageBar(usage.count);
+
+    // 3) Webhook call
+    spinner.classList.remove("hidden");
+    const formData = new FormData(form);
 
     try {
-      const response = await fetch(form.action, {
-        method:"POST",
-        body:new FormData(form)
+      const res = await fetch(webhook, {
+        method: "POST",
+        body: formData
       });
 
-      const result = await response.json();
-      hideLoader();
+      const output = await res.json();
+      spinner.classList.add("hidden");
 
-      document.getElementById("report-container").innerHTML =
-        `<div class="text-white p-6">
-          ${(result.output||"").replace(/\n/g,"<br>")}
-        </div>`;
-
-      // increment count
+      // 4) Update usage
       await incrementUsage();
 
-      // update credits
-      const updatedCount = await getUsageCount();
-      showRemaining(updatedCount);
+      // 5) Show output
+      document.getElementById("report-container").innerHTML = `
+        <div class="bg-surface-dark border border-border-dark p-6 rounded-xl text-white">
+          ${output.content?.replace(/\n/g, "<br>") || output.output || ""}
+        </div>
+      `;
 
-    } catch(err) {
-      hideLoader();
-      toast(err.message);
+      // 6) Share button
+      const share = document.createElement("button");
+      share.className = "mt-4 bg-primary text-white rounded px-4 py-2";
+      share.innerText = "Share Your Idea Score";
+
+      share.onclick = () => {
+        navigator.share({
+          text: "My startup idea score on IdeaValidator!",
+          url: window.location.href
+        });
+      };
+
+      document.getElementById("report-container").appendChild(share);
+
+      // 7) Update usage bar after increment
+      renderUsageBar(usage.count + 1);
+
+    } catch (err) {
+      spinner.classList.add("hidden");
+      alert("Error: " + err.message);
     }
-  };
+  });
 }
-
-initValidator();
-
-
-document.getElementById("share-btn").innerHTML = `
-  <button id="tweet-btn" class="bg-blue-500 text-white px-4 py-2 rounded">
-    Share Your Score
-  </button>
-`;
-
-document.getElementById("tweet-btn").onclick = () => {
-  const text = `I just validated my startup idea using IdeaValidator — Score: ${result.score}/100. Try yours!`;
-  const url = encodeURI(`https://twitter.com/intent/tweet?text=${text}`);
-  window.open(url, "_blank");
-};
