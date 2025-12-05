@@ -18,3 +18,14 @@ export function showRemaining(count) {
     </div>
   `;
 }
+
+
+
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header.classList.add('bg-background-dark/90', 'shadow-primary/30');
+    } else {
+      header.classList.remove('bg-background-dark/90', 'shadow-primary/30');
+    }
+  });
