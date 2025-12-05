@@ -48,26 +48,32 @@
     }
   </style>
 
+
+<link rel="icon" href="/idea-validator-favicon.png" type="image/png">
+
+<meta name="description" content="Validate your startup idea instantly with Reddit data and AI-powered insights. Stop guessing. Start validating.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://ideavalidator-reddit.vercel.app/">
+
+<meta property="og:title" content="IdeaValidator - Stop Guessing. Start Validating.">
+<meta property="og:description" content="Validate your startup idea instantly with Reddit data and AI-powered insights.">
+<meta property="og:image" content="/og-image-reddit-idea-validator.png">
+<meta property="og:url" content="https://ideavalidator-reddit.vercel.app/">
+<meta name="twitter:card" content="summary_large_image">
+
+
+
+
+
+
   </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-text-light">
 <div class="relative min-h-screen w-full overflow-x-hidden">
-<header class="sticky top-0 z-50 w-full backdrop-blur-md">
-<div class="container mx-auto">
-<div class="flex items-center p-4">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-3xl">lightbulb</span>
-<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] flex-1">IdeaValidator</h2>
-</div>
-<nav class="hidden md:flex items-center gap-8 mx-auto">
-<a class="text-text-dark-secondary hover:text-white text-sm font-bold leading-normal tracking-[0.015em]" href="https://ideavalidator-reddit.vercel.app/how-it-works">How It Works</a>
-<a class="text-text-dark-secondary hover:text-white text-sm font-bold leading-normal tracking-[0.015em]" href="https://ideavalidator-reddit.vercel.app/pricing">Pricing</a>
-<a class="text-text-dark-secondary hover:text-white text-sm font-bold leading-normal tracking-[0.015em]" href="https://ideavalidator-reddit.vercel.app/blog">Blog</a>
-<a class="text-text-dark-secondary hover:text-white text-sm font-bold leading-normal tracking-[0.015em]" href="https://ideavalidator-reddit.vercel.app/about">About</a>
-</nav>
-<div class="flex ml-auto items-center justify-end"><a class="bg-primary text-white flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 text-sm font-bold leading-normal tracking-[0.015em]" href="#"><span class="truncate">Sign Up</span></a></div>
-</div>
-</div>
-</header>
+
+
+<div id="header"></div>
+
+
 <main class="container mx-auto px-4 py-8 md:py-16">
 <section class="flex flex-col items-center text-center">
 <div class="mb-12 md:mb-16">
@@ -152,17 +158,16 @@
 </div>
 </section>
 </main>
-<footer class="mt-24 border-t border-border-dark">
-<div class="container mx-auto px-4 py-8">
-<div class="flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="text-text-dark-secondary text-sm">© 2024 IdeaValidator. All rights reserved.</p>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-xl">lightbulb</span>
-<h2 class="text-white text-lg font-bold">IdeaValidator</h2>
-</div>
-</div>
-</div>
-</footer>
+<div id="footer"></div>
+
+<script>
+  async function loadPartial(id, file) {
+    const res = await fetch(file);
+    document.getElementById(id).innerHTML = await res.text();
+  }
+  loadPartial("header", "/partials/header.html");
+  loadPartial("footer", "/partials/footer.html");
+</script>
 </div>
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>

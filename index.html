@@ -51,6 +51,21 @@
     }
   </style>
 
+<link rel="icon" href="/idea-validator-favicon.png" type="image/png">
+
+<meta name="description" content="Validate your startup idea instantly with Reddit data and AI-powered insights. Stop guessing. Start validating.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://ideavalidator-reddit.vercel.app/">
+
+<meta property="og:title" content="IdeaValidator - Stop Guessing. Start Validating.">
+<meta property="og:description" content="Validate your startup idea instantly with Reddit data and AI-powered insights.">
+<meta property="og:image" content="/og-image-reddit-idea-validator.png">
+<meta property="og:url" content="https://ideavalidator-reddit.vercel.app/">
+<meta name="twitter:card" content="summary_large_image">
+
+
+
+
   </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-text-light">
 <div class="relative min-h-screen w-full overflow-x-hidden">
@@ -60,13 +75,10 @@
 <header class="sticky top-0 z-50 w-full backdrop-blur-md">
 <div class="container mx-auto">
 <div class="flex items-center p-4">
-<div class="flex items-center gap-2">
-<svg class="h-8 w-8 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-12h2v2h-2v-2zm0 4h2v6h-2v-6z"></path>
-<path d="M12.01 10.5c.84 0 1.52-.68 1.52-1.52S12.85 7.46 12.01 7.46c-.84 0-1.52.68-1.52 1.52s.68 1.52 1.52 1.52zm0 0c.84 0 1.52-.68 1.52-1.52S12.85 7.46 12.01 7.46c-.84 0-1.52.68-1.52 1.52s.68 1.52 1.52 1.52zm3.17-5.55c-.18-.52-.67-.88-1.24-.88H9.06c-.57 0-1.06.36-1.24.88L6 11.55v.98c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-.98l-1.82-6.55zM12 18.5c2.49 0 4.5-2.01 4.5-4.5H7.5c0 2.49 2.01 4.5 4.5 4.5z"></path>
-</svg>
-<h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] flex-1"><a href="https://ideavalidator-reddit.vercel.app/">IdeaValidator</h2></a>
-</div>
+      <a href="https://ideavalidator-reddit.vercel.app/" class="flex items-center gap-2 hover:opacity-90 transition-opacity">
+        <img src="/idea-validator-favicon.png" alt="IdeaValidator Logo" class="h-8 w-8">
+        <span class="text-white text-xl font-bold leading-tight tracking-[-0.015em]">IdeaValidator</span>
+      </a>
 
 <nav class="hidden md:flex items-center gap-8 mx-auto">
 <a class="text-text-dark-secondary hover:text-white text-sm font-bold leading-normal tracking-[0.015em]" href="https://ideavalidator-reddit.vercel.app/how-it-works">How It Works</a>
@@ -210,7 +222,7 @@
 </div>
 </section>
 </main>
-<footer class="mt-24 border-t border-border-dark relative z-10">
+<!-- <footer class="mt-24 border-t border-border-dark relative z-10">
 <div class="container mx-auto px-4 py-8">
 <div class="flex flex-col md:flex-row justify-between items-center gap-4">
 <p class="text-text-dark-secondary text-sm">© 2024 IdeaValidator. All rights reserved.</p>
@@ -223,7 +235,12 @@
 </div>
 </div>
 </div>
-</footer>
+</footer> -->
+
+<div id="footer"></div>
+
+
+
 </div>
 
 <!-- JS -->
@@ -233,6 +250,17 @@
 <script src="/js/usage.js"></script>
 <script src="/js/validator.js"></script>
 <script src="/js/ui.js"></script>
+
+
+<script>
+  async function loadPartial(id, file) {
+    const res = await fetch(file);
+    document.getElementById(id).innerHTML = await res.text();
+  }
+  loadPartial("header", "/partials/header.html");
+  loadPartial("footer", "/partials/footer.html");
+</script>
+
 
 
 <script>

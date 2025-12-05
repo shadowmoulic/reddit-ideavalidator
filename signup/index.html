@@ -95,4 +95,16 @@
 </div>
 </div>
 
+<div id="footer"></div>
+
+<script>
+  async function loadPartial(id, file) {
+    const res = await fetch(file);
+    document.getElementById(id).innerHTML = await res.text();
+  }
+  loadPartial("header", "/partials/header.html");
+  loadPartial("footer", "/partials/footer.html");
+</script>
+</div>
+
 </body></html>
