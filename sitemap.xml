@@ -6,4 +6,10 @@
   <url><loc>https://ideavalidator-reddit.vercel.app/blog</loc></url>
   <url><loc>https://ideavalidator-reddit.vercel.app/about</loc></url>
   <url><loc>https://ideavalidator-reddit.vercel.app/signup</loc></url>
+
+  <url>
+    <loc>https://ideavalidator-reddit.vercel.app/blog/how-to-validate-startup-idea</loc>
+    <lastmod>2025-12-06T08:31:53.820Z</lastmod>
+    <priority>0.8</priority>
+  </url>
 </urlset>
