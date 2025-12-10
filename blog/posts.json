@@ -1,14 +1,56 @@
 [
   {
-    "title": "Unlock Startup Success: Best Subreddits for Feedback",
-    "url": "/blog/best-subreddits-feedback.html",
-    "desc": "Find the best subreddits for startup feedback and learn how to get valuable insights quickly!",
-    "date": "2025-12-10T17:39:03.874Z"
+    "title": "Validate Your Startup Idea in Minutes!",
+    "url": "/blog/validate-startup-idea.html",
+    "desc": "Unlock the secrets to validating your startup idea quickly with Reddit and AI insights!",
+    "image": "/assets/img/blog/hero-validate-startup-idea.png",
+    "category": "Startup Validation",
+    "author": "IdeaValidator Team",
+    "date": "Dec 8, 2025"
+  },
+  {
+    "title": "Validate Startup Ideas Using Reddit!",
+    "url": "/blog/validate-idea-reddit.html",
+    "desc": "Learn to validate startup idea using Reddit with AI-driven insights and real founder success stories.",
+    "image": "/assets/img/blog/hero-validate-idea-reddit.png",
+    "category": "Reddit Validation",
+    "author": "IdeaValidator Team",
+    "date": "Dec 9, 2025"
+  },
+  {
+    "title": "Speed Up Startup Success with AI Idea Validation",
+    "url": "/blog/ai-idea-validator.html",
+    "desc": "Unlock rapid insights with our AI startup idea validator—validate your idea faster than ever and reduce risk.",
+    "image": "/assets/img/blog/hero-ai-idea-validator.png",
+    "category": "AI Validation",
+    "author": "IdeaValidator Team",
+    "date": "Dec 10, 2025"
   },
   {
     "title": "Is Your Business Idea Viable? Find Out Fast!",
     "url": "/blog/business-idea-check.html",
-    "desc": "Learn how to validate your business idea effectively with actionable steps!",
-    "date": "2025-12-10T17:05:10.772Z"
+    "desc": "Worried if your business idea will work? Use our IdeaValidator to run five essential viability checks.",
+    "image": "/assets/img/blog/hero-business-idea-check.png",
+    "category": "Business Strategy",
+    "author": "IdeaValidator Team",
+    "date": "Dec 11, 2025"
+  },
+  {
+    "title": "Top Idea Validation Tools for Startups Revealed!",
+    "url": "/blog/top-validation-tools.html",
+    "desc": "Discover the best idea validation tools for startups and why our tool is ranked #1 for speed and accuracy.",
+    "image": "/assets/img/blog/hero-top-validation-tools.png",
+    "category": "Startup Tools",
+    "author": "IdeaValidator Team",
+    "date": "Dec 12, 2025"
+  },
+  {
+    "title": "Best Subreddits for Startup Feedback That Work",
+    "url": "/blog/best-subreddits-feedback.html",
+    "desc": "Need startup feedback fast? Discover the best subreddits for real founder insights and product validation.",
+    "image": "/assets/img/blog/hero-best-subreddits-feedback.png",
+    "category": "Reddit Growth",
+    "author": "IdeaValidator Team",
+    "date": "Dec 13, 2025"
   }
 ]
